@@ -14,7 +14,7 @@ Route::get('/home', function () {
     return view('home');
 });
 
-// acara3
+
 // Acara 3
 Route::get('foo', function(){
     return 'Hello World';
@@ -91,4 +91,13 @@ Route::prefix('admin')->group(function () {
 Route::name('admin')->group(function () {
     Route::get('users', function () {
     })->name('users');
+});
+
+//Acara 7
+Route::resource('/homeacara7', HomeController::class);
+
+//Acara 8
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::resource('dashboard', DashboardController::class);
+    Route::resource('product', ProductController::class);
 });
