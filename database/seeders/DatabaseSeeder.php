@@ -1,6 +1,8 @@
 <?php
 
 namespace Database\Seeders;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -11,6 +13,8 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
+
+    
     public function run(): void
     {
         // User::factory(10)->create();
@@ -19,5 +23,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        Schema::disableForeignKeyConstraints();
+    DB::table('users')->truncate();
+    Schema::enableForeignKeyConstraints();
+
+    \App\Models\User::factory(10)->create();
     }
 }
