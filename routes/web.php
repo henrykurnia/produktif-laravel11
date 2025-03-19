@@ -1,6 +1,22 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ManagementUsercontroller;
+use App\Http\Controllers\SessionController;
+use App\Http\Middleware\CheckAge;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\backend\PengalamanKerjaController;
+use App\Http\Controllers\backend\PendidikanController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\CobaController;
+use App\Http\Controllers\UploadController;
+use App\Http\Controllers\ApiPendidikanController;
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -105,3 +121,31 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//Acara 12
+Route:: get('admin/profile', function () {
+    //
+})->middleware('auth');
+
+Route::get('/', function (){
+    //
+})->middleware('first', 'second');
+
+Route::get('admin/profile', function () {
+    //
+})->middleware(CheckAge::class);
+
+Route:: get('/', function () {
+    //
+})->middleware('web');
+
+Route::group(['middleware'=> ['web']], function (){
+    //
+});
+
+Route::middleware(['web', 'subscribed'])->group(function (){
+    //
+});
+
+Route::put('post/{id}', function ($id){
+    //
+})->middleware('role:editor');
